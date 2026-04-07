@@ -252,7 +252,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     return;
   }
 
-  sendMessageToTab(
+  await sendMessageToTab(
     MessageType.ActiveInputElementWrite,
     { text: LOADING_COPY } as ActiveInputElementWriteData,
     tab
@@ -265,7 +265,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
   const isClientAuthenticated = await client.isAuthenticated();
 
   if (!isClientAuthenticated) {
-    sendMessageToTab(
+    await sendMessageToTab(
       MessageType.ActiveInputElementWrite,
       {
         text: SIGNED_OUT_CTA_COPY,
@@ -287,7 +287,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
       tab
     );
   } catch (e) {
-    sendMessageToTab(
+    await sendMessageToTab(
       MessageType.ActiveInputElementWrite,
       {
         text: toUserFriendlyError(e),
