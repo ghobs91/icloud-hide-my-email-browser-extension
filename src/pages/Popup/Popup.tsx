@@ -634,7 +634,7 @@ const HmeManager = (props: {
       searchHmeEmails(searchPrompt || '', fetchedHmeEmails) || fetchedHmeEmails;
 
     if (selectedHmeIdx >= hmeEmails.length) {
-      setSelectedHmeIdx(hmeEmails.length - 1);
+      setSelectedHmeIdx(Math.max(0, hmeEmails.length - 1));
     }
 
     const selectedHmeEmail = hmeEmails[selectedHmeIdx];
