@@ -443,6 +443,14 @@ const HmeDetails = (props: {
   }, [props.hme]);
 
   const onActivationClick = async () => {
+    if (
+      props.hme.isActive &&
+      !confirm(
+        `Are you sure you want to deactivate ${props.hme.hme}? You will stop receiving emails sent to this address.`
+      )
+    ) {
+      return;
+    }
     setIsActivateSubmitting(true);
     try {
       const pms = new PremiumMailSettings(props.client);
@@ -460,6 +468,13 @@ const HmeDetails = (props: {
   };
 
   const onDeletionClick = async () => {
+    if (
+      !confirm(
+        `Are you sure you want to permanently delete ${props.hme.hme}? This action cannot be undone.`
+      )
+    ) {
+      return;
+    }
     setIsDeleteSubmitting(true);
     try {
       const pms = new PremiumMailSettings(props.client);
