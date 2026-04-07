@@ -140,10 +140,17 @@ browser.runtime.onMessage.addListener(async (uncastedMessage: unknown) => {
         const { hme, label, elementId } =
           message.data as ReservationRequestData;
         const client = await constructClient();
-        // Given that the reservation step happens shortly after
-        // the generation step, it is safe to assume that the client's
-        // auth state has been recently validated. Hence, we are
-        // skipping token validation.
+
+        const isClientAuthenticated = await client.isAuthenticated();
+        if (!isClientAuthenticated) {
+          await sendMessageToTab(MessageType.ReservationResponse, {
+            error: SIGNED_OUT_CTA_COPY,
+            elementId,
+          });
+          performDeauthSideEffects();
+          break;
+        }
+
         try {
           const pms = new PremiumMailSettings(client);
           await pms.reserveHme(hme, label);
