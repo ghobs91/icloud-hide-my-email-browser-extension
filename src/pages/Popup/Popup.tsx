@@ -297,6 +297,7 @@ const HmeGenerator = (props: {
   }, []);
 
   const onEmailRefreshClick = async () => {
+    if (isEmailRefreshSubmitting) return;
     setIsEmailRefreshSubmitting(true);
     setReservedHme(undefined);
     setHmeError(undefined);
