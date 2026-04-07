@@ -712,7 +712,7 @@ const HmeManager = (props: {
     );
 
     return (
-      <div className="grid grid-cols-2" style={{ height: 398 }}>
+      <div className="grid grid-cols-2" style={{ height: 'clamp(300px, 60vh, 500px)' }}>
         <div className="overflow-y-auto text-sm rounded-l-md border border-gray-200">
           <div className="sticky top-0 border-b">{searchBox}</div>
           {hmeEmails.length === 0 && searchPrompt ? noSearchResult : labelList}
