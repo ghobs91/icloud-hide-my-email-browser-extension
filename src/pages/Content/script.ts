@@ -39,7 +39,7 @@ const disableButton = (
   cursorClass: string,
   copy: string
 ): void => {
-  btn.innerHTML = copy;
+  btn.textContent = copy;
   btn.setAttribute('disabled', 'true');
   btn.classList.remove(className('hover-button'));
   btn.classList.forEach((name) => {
@@ -55,7 +55,7 @@ const enableButton = (
   cursorClass: string,
   copy: string
 ): void => {
-  btn.innerHTML = copy;
+  btn.textContent = copy;
   btn.removeAttribute('disabled');
   btn.classList.add(className('hover-button'));
   btn.classList.forEach((name) => {
