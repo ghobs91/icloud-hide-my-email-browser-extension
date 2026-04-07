@@ -16,6 +16,7 @@ import {
   MessageType,
   ReservationRequestData,
   sendMessageToTab,
+  isValidMessage,
 } from '../../messages';
 import browser from 'webextension-polyfill';
 import {
@@ -84,7 +85,11 @@ const performAuthSideEffects = (
 // ===== Message handling =====
 
 browser.runtime.onMessage.addListener(async (uncastedMessage: unknown) => {
-  const message = uncastedMessage as Message<unknown>;
+  if (!isValidMessage(uncastedMessage)) {
+    console.debug('Received invalid message', uncastedMessage);
+    return;
+  }
+  const message = uncastedMessage;
 
   switch (message.type) {
     case MessageType.GenerateRequest:

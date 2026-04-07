@@ -5,6 +5,7 @@ import {
   MessageType,
   ReservationRequestData,
   ReservationResponseData,
+  isValidMessage,
 } from '../../messages';
 import { v4 as uuidv4 } from 'uuid';
 import './index.css';
@@ -201,7 +202,11 @@ export default async function main(): Promise<void> {
   });
 
   browser.runtime.onMessage.addListener((uncastedMessage: unknown) => {
-    const message = uncastedMessage as Message<unknown>;
+    if (!isValidMessage(uncastedMessage)) {
+      console.debug('Received invalid message', uncastedMessage);
+      return undefined;
+    }
+    const message = uncastedMessage;
 
     switch (message.type) {
       case MessageType.Autofill:

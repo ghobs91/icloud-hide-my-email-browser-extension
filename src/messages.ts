@@ -33,6 +33,19 @@ export type ActiveInputElementWriteData = {
 
 export type ReservationResponseData = GenerationResponseData;
 
+export function isValidMessage(value: unknown): value is Message<unknown> {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'type' in value &&
+    typeof (value as Record<string, unknown>).type === 'number' &&
+    Object.values(MessageType).includes(
+      (value as Record<string, unknown>).type as MessageType
+    ) &&
+    'data' in value
+  );
+}
+
 export const sendMessageToTab = async (
   type: MessageType,
   data: unknown,
