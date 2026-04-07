@@ -692,7 +692,7 @@ const HmeManager = (props: {
 
     const labelList = hmeEmails.map((hme, idx) => (
       <button
-        key={idx}
+        key={hme.anonymousId}
         aria-current={selectedHmeIdx === idx}
         type="button"
         className={idx === selectedHmeIdx ? selectedBtnClassName : btnClassName}

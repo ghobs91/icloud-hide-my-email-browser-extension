@@ -104,19 +104,19 @@ const SelectFwdToForm = () => {
 
   return (
     <form className="space-y-3" onSubmit={onSelectedFwdToSubmit}>
-      {fwdToEmails?.map((fwdToEmail, key) => (
-        <div className="flex items-center mb-3" key={key}>
+      {fwdToEmails?.map((fwdToEmail) => (
+        <div className="flex items-center mb-3" key={fwdToEmail}>
           <input
             onChange={() => setSelectedFwdToEmail(fwdToEmail)}
             checked={fwdToEmail === selectedFwdToEmail}
-            id={`radio-${key}`}
+            id={`radio-${fwdToEmail}`}
             type="radio"
             disabled={isSubmitting}
-            name={`fwdto-radio-${key}`}
+            name="fwdto-radio"
             className="cursor-pointer w-4 h-4 accent-gray-900 hover:accent-gray-500"
           />
           <label
-            htmlFor={`radio-${key}`}
+            htmlFor={`radio-${fwdToEmail}`}
             className="cursor-pointer ml-2 text-gray-900 dark:text-gray-100"
           >
             {fwdToEmail}
