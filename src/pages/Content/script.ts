@@ -13,7 +13,7 @@ import browser from 'webextension-polyfill';
 import { getBrowserStorageValue } from '../../storage';
 
 const EMAIL_INPUT_QUERY_STRING =
-  'input[type="email"], input[name="email"], input[id="email"]';
+  'input[type="email"], input[name="email"], input[id="email"], input[autocomplete="email"]';
 
 const LOADING_COPY = 'Hide My Email — Loading...';
 
