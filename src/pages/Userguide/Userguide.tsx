@@ -16,8 +16,8 @@ const Notice = (props: {
   const { title, children, isAlert = false } = props;
 
   const colourPalette = isAlert
-    ? 'bg-yellow-50 border-yellow-400 text-yellow-600'
-    : 'text-gray-600 bg-gray-50';
+    ? 'bg-yellow-50 border-yellow-400 text-yellow-600 dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-400'
+    : 'text-gray-600 bg-gray-50 dark:text-gray-300 dark:bg-gray-800';
 
   return (
     <div
@@ -111,7 +111,7 @@ const AutofillableDemoInput = (props: {
     <div className="space-y-2">
       <label
         htmlFor={props.inputAttributes.id}
-        className="block font-semibold text-gray-600"
+        className="block font-semibold text-gray-600 dark:text-gray-300"
       >
         {props.label}{' '}
         {autofillableInputValue?.endsWith('@icloud.com') && (
@@ -122,7 +122,7 @@ const AutofillableDemoInput = (props: {
         )}
       </label>
       <input
-        className="bg-[Canvas] block w-full rounded-md relative px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-hidden focus:ring-sky-400 focus:border-sky-400 focus:z-10 sm:text-sm"
+        className="bg-[Canvas] block w-full rounded-md relative px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-400 text-gray-900 dark:text-gray-100 dark:bg-gray-800 focus:outline-hidden focus:ring-sky-400 focus:border-sky-400 focus:z-10 sm:text-sm"
         defaultValue={autofillableInputValue}
         onInput={(e) =>
           setAutoFillableInputValue((e.target as HTMLInputElement).value)
@@ -155,7 +155,7 @@ const UsageInstructions = () => {
       </div>
       <div className="space-y-2">
         <p>Try it yourself:</p>
-        <div className="w-full max-w-md p-3 border rounded-lg bg-gray-50">
+        <div className="w-full max-w-md p-3 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-2">
             <AutofillableDemoInput
               label="Autofill via button"

@@ -50,7 +50,7 @@ export const LoadingButton = (
 export const ErrorMessage = (props: { children?: React.ReactNode }) => {
   return (
     <div
-      className="p-2 text-sm text-red-700 bg-red-100 rounded-lg"
+      className="p-2 text-sm text-red-700 bg-red-100 dark:text-red-400 dark:bg-red-900/30 rounded-lg"
       role="alert"
     >
       {props.children}
@@ -69,14 +69,14 @@ export const TitledComponent = (props: {
   return (
     <div className="text-base space-y-3">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900">{props.title}</h1>
-        <h2 className="font-medium text-gray-400">{props.subtitle}</h2>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{props.title}</h1>
+        <h2 className="font-medium text-gray-400 dark:text-gray-500">{props.subtitle}</h2>
       </div>
       {children?.map((child, key) => {
         return (
           child && (
             <React.Fragment key={key}>
-              <hr />
+              <hr className="dark:border-gray-700" />
               {child}
             </React.Fragment>
           )

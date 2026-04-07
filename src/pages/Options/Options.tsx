@@ -117,7 +117,7 @@ const SelectFwdToForm = () => {
           />
           <label
             htmlFor={`radio-${key}`}
-            className="cursor-pointer ml-2 text-gray-900"
+            className="cursor-pointer ml-2 text-gray-900 dark:text-gray-100"
           >
             {fwdToEmail}
           </label>
@@ -180,7 +180,7 @@ const AutofillForm = () => {
           />
           <label
             htmlFor={`checkbox-${key}`}
-            className="cursor-pointer ml-2 text-gray-900"
+            className="cursor-pointer ml-2 text-gray-900 dark:text-gray-100"
           >
             {startCase(key)}
           </label>

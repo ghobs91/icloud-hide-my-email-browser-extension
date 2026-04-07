@@ -83,7 +83,7 @@ const SignInInstructions = () => {
           </p>
         </div>
         <div
-          className="flex p-3 text-sm border text-gray-600 rounded-lg bg-gray-50"
+          className="flex p-3 text-sm border text-gray-600 dark:text-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
           role="alert"
         >
           <FontAwesomeIcon icon={faInfoCircle} className="mr-2 mt-1" />
@@ -95,7 +95,7 @@ const SignInInstructions = () => {
         </div>
         {isFirefox && (
           <div
-            className="flex p-3 text-sm border text-gray-600 rounded-lg bg-gray-50"
+            className="flex p-3 text-sm border text-gray-600 dark:text-gray-300 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
             role="alert"
           >
             <FontAwesomeIcon icon={faFirefoxBrowser} className="mr-2 mt-1" />
@@ -341,7 +341,7 @@ const HmeGenerator = (props: {
     isEmailRefreshSubmitting || hmeEmail == reservedHme?.hme;
 
   const reservationFormInputClassName =
-    'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-hidden focus:border-sky-400 focus:z-10 sm:text-sm';
+    'appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-400 text-gray-900 dark:text-gray-100 dark:bg-gray-800 focus:outline-hidden focus:border-sky-400 focus:z-10 sm:text-sm';
 
   return (
     <TitledComponent
@@ -506,7 +506,7 @@ const HmeDetails = (props: {
   const btnClassName =
     'w-full justify-center text-white focus:ring-4 focus:outline-hidden font-medium rounded-lg px-2 py-3 text-center inline-flex items-center';
   const labelClassName = 'font-bold';
-  const valueClassName = 'text-gray-500 truncate';
+  const valueClassName = 'text-gray-500 dark:text-gray-400 truncate';
 
   return (
     <div className="space-y-2">
@@ -664,13 +664,13 @@ const HmeManager = (props: {
     const selectedHmeEmail = hmeEmails[selectedHmeIdx];
 
     const searchBox = (
-      <div className="relative p-2 rounded-tl-md bg-gray-100">
+      <div className="relative p-2 rounded-tl-md bg-gray-100 dark:bg-gray-800">
         <div className="absolute inset-y-0 flex items-center pl-3 pointer-events-none">
           <FontAwesomeIcon className="text-gray-400" icon={faSearch} />
         </div>
         <input
           type="search"
-          className="bg-[Canvas] pl-9 p-2 w-full rounded-sm placeholder-gray-400 border border-gray-200 focus:outline-hidden focus:border-sky-400"
+          className="bg-[Canvas] pl-9 p-2 w-full rounded-sm placeholder-gray-400 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 focus:outline-hidden focus:border-sky-400"
           placeholder="Search"
           aria-label="Search through your HideMyEmail addresses"
           onChange={(e) => {
@@ -682,8 +682,8 @@ const HmeManager = (props: {
     );
 
     const btnBaseClassName =
-      'p-2 w-full text-left border-b last:border-b-0 cursor-pointer truncate focus:outline-sky-400';
-    const btnClassName = `${btnBaseClassName} hover:bg-gray-100`;
+      'p-2 w-full text-left border-b last:border-b-0 cursor-pointer truncate focus:outline-sky-400 dark:border-gray-700';
+    const btnClassName = `${btnBaseClassName} hover:bg-gray-100 dark:hover:bg-gray-700`;
     const selectedBtnClassName = `${btnBaseClassName} text-white bg-sky-400 font-medium`;
 
     const labelList = hmeEmails.map((hme, idx) => (
@@ -713,11 +713,11 @@ const HmeManager = (props: {
 
     return (
       <div className="grid grid-cols-2" style={{ height: 'clamp(300px, 60vh, 500px)' }}>
-        <div className="overflow-y-auto text-sm rounded-l-md border border-gray-200">
-          <div className="sticky top-0 border-b">{searchBox}</div>
+        <div className="overflow-y-auto text-sm rounded-l-md border border-gray-200 dark:border-gray-700">
+          <div className="sticky top-0 border-b dark:border-gray-700">{searchBox}</div>
           {hmeEmails.length === 0 && searchPrompt ? noSearchResult : labelList}
         </div>
-        <div className="overflow-y-auto p-2 rounded-r-md border border-l-0 border-gray-200">
+        <div className="overflow-y-auto p-2 rounded-r-md border border-l-0 border-gray-200 dark:border-gray-700">
           {selectedHmeEmail && (
             <HmeDetails
               client={props.client}
