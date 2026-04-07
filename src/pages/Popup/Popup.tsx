@@ -141,8 +141,13 @@ const SignInInstructions = () => {
 };
 
 const ReservationResult = (props: { hme: HmeEmail }) => {
+  const [copied, setCopied] = useState(false);
+
   const onCopyToClipboardClick = async () => {
     await navigator.clipboard.writeText(props.hme.hme);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   };
 
   const onAutofillClick = async () => {
@@ -166,8 +171,8 @@ const ReservationResult = (props: { hme: HmeEmail }) => {
           className={btnClassName}
           onClick={onCopyToClipboardClick}
         >
-          <FontAwesomeIcon icon={faClipboard} className="mr-1" />
-          Copy to clipboard
+          <FontAwesomeIcon icon={copied ? faCheck : faClipboard} className="mr-1" />
+          {copied ? 'Copied!' : 'Copy to clipboard'}
         </button>
         <button
           type="button"
@@ -432,6 +437,7 @@ const HmeDetails = (props: {
 }) => {
   const [isActivateSubmitting, setIsActivateSubmitting] = useState(false);
   const [isDeleteSubmitting, setIsDeleteSubmitting] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const [error, setError] = useState<string>();
 
@@ -489,6 +495,8 @@ const HmeDetails = (props: {
 
   const onCopyClick = async () => {
     await navigator.clipboard.writeText(props.hme.hme);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   const onAutofillClick = async () => {
@@ -544,11 +552,11 @@ const HmeDetails = (props: {
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="grid grid-cols-3 gap-2">
         <button
-          title="Copy"
+          title={copied ? 'Copied!' : 'Copy'}
           className={`${btnClassName} bg-sky-400 hover:bg-sky-500 focus:ring-blue-300`}
           onClick={onCopyClick}
         >
-          <FontAwesomeIcon icon={faClipboard} />
+          <FontAwesomeIcon icon={copied ? faCheck : faClipboard} />
         </button>
         <button
           title="Autofill"
