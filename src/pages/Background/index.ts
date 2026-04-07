@@ -287,7 +287,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 browser.webRequest.onResponseStarted.addListener(
   async (details: browser.WebRequest.OnResponseStartedDetailsType) => {
     const { statusCode, url } = details;
-    if (statusCode < 200 && statusCode > 299) {
+    if (statusCode < 200 || statusCode > 299) {
       console.debug('Request failed', details);
       return;
     }
@@ -313,7 +313,7 @@ browser.webRequest.onResponseStarted.addListener(
 browser.webRequest.onResponseStarted.addListener(
   async (details: browser.WebRequest.OnResponseStartedDetailsType) => {
     const { statusCode } = details;
-    if (statusCode < 200 && statusCode > 299) {
+    if (statusCode < 200 || statusCode > 299) {
       console.debug('Request failed', details);
       return;
     }
