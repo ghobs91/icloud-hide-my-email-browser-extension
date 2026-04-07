@@ -29,6 +29,13 @@ import {
 } from './constants';
 import { isFirefox } from '../../browserUtils';
 
+const GENERIC_ERROR_COPY = 'Something went wrong. Please try again.';
+
+const toUserFriendlyError = (e: unknown): string => {
+  console.error(e);
+  return GENERIC_ERROR_COPY;
+};
+
 const constructClient = async (): Promise<ICloudClient> => {
   const clientState = await getBrowserStorageValue('clientState');
 
@@ -129,7 +136,7 @@ browser.runtime.onMessage.addListener(async (uncastedMessage: unknown) => {
           });
         } catch (e) {
           await sendMessageToTab(MessageType.GenerateResponse, {
-            error: e.toString(),
+            error: toUserFriendlyError(e),
             elementId,
           });
         }
@@ -160,7 +167,7 @@ browser.runtime.onMessage.addListener(async (uncastedMessage: unknown) => {
           });
         } catch (e) {
           await sendMessageToTab(MessageType.ReservationResponse, {
-            error: e.toString(),
+            error: toUserFriendlyError(e),
             elementId,
           });
         }
@@ -283,7 +290,7 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     sendMessageToTab(
       MessageType.ActiveInputElementWrite,
       {
-        text: e.toString(),
+        text: toUserFriendlyError(e),
         copyToClipboard: false,
       } as ActiveInputElementWriteData,
       tab
