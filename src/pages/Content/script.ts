@@ -161,7 +161,7 @@ export default async function main(): Promise<void> {
         );
         addedElements.forEach((el) => {
           const elementExists = autofillableInputElements.some((item) =>
-            el.isEqualNode(item.inputElement)
+            el === item.inputElement
           );
           if (!elementExists) {
             autofillableInputElements.push(makeAutofillableInputElement(el));
@@ -179,7 +179,7 @@ export default async function main(): Promise<void> {
         );
         removedElements.forEach((el) => {
           const foundIndex = autofillableInputElements.findIndex((item) =>
-            el.isEqualNode(item.inputElement)
+            el === item.inputElement
           );
           if (foundIndex !== -1) {
             const [{ inputElement, buttonSupport }] =
@@ -298,7 +298,7 @@ export default async function main(): Promise<void> {
           // Remove button if it exists. This should rarely happen as context menu
           // users are expected to have turned off button support.
           const found = autofillableInputElements.find((ael) =>
-            ael.inputElement.isEqualNode(activeElement)
+            ael.inputElement === activeElement
           );
           const buttonSupport = found?.buttonSupport;
           if (buttonSupport) {
