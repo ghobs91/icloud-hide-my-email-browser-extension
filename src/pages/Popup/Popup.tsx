@@ -351,7 +351,7 @@ const HmeGenerator = (props: {
       <div className="text-center space-y-1">
         <div>
           <span className="text-2xl">
-            <button className="mr-2" onClick={onEmailRefreshClick}>
+            <button className="mr-2" onClick={onEmailRefreshClick} aria-label="Generate new email address">
               <FontAwesomeIcon
                 className="text-sky-400 hover:text-sky-500 align-text-bottom"
                 icon={faRefresh}
@@ -553,6 +553,7 @@ const HmeDetails = (props: {
       <div className="grid grid-cols-3 gap-2">
         <button
           title={copied ? 'Copied!' : 'Copy'}
+          aria-label={copied ? 'Copied to clipboard' : 'Copy to clipboard'}
           className={`${btnClassName} bg-sky-400 hover:bg-sky-500 focus:ring-blue-300`}
           onClick={onCopyClick}
         >
@@ -560,6 +561,7 @@ const HmeDetails = (props: {
         </button>
         <button
           title="Autofill"
+          aria-label="Autofill email field"
           className={`${btnClassName} bg-sky-400 hover:bg-sky-500 focus:ring-blue-300`}
           onClick={onAutofillClick}
         >
@@ -567,6 +569,7 @@ const HmeDetails = (props: {
         </button>
         <LoadingButton
           title={props.hme.isActive ? 'Deactivate' : 'Reactivate'}
+          aria-label={props.hme.isActive ? 'Deactivate email address' : 'Reactivate email address'}
           className={`${btnClassName} ${
             props.hme.isActive
               ? 'bg-red-500 hover:bg-red-600 focus:ring-red-300'
@@ -580,6 +583,7 @@ const HmeDetails = (props: {
         {!props.hme.isActive && (
           <LoadingButton
             title="Delete"
+            aria-label="Permanently delete email address"
             className={`${btnClassName} bg-red-500 hover:bg-red-600 focus:ring-red-300 col-span-3`}
             onClick={onDeletionClick}
             loading={isDeleteSubmitting}
