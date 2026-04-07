@@ -148,7 +148,6 @@ const ReservationResult = (props: { hme: HmeEmail }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-  };
 
   const onAutofillClick = async () => {
     await sendMessageToTab(MessageType.Autofill, props.hme.hme);
